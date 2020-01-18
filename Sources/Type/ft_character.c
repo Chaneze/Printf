@@ -6,7 +6,7 @@
 /*   By: charoua <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:05:01 by charoua           #+#    #+#             */
-/*   Updated: 2020/01/18 15:23:20 by charoua          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:08:39 by charoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ void	ft_left_justify_char(t_print *print, int width, char letter)
 	int i;
 
 	i = 0;
-	print->arg[i++] = letter;
+	if (letter != '\0')
+		print->arg[i++] = letter;
+	else
+	{
+		print->size = print->size + 1;
+		width--;
+	}
 	while (i < width)
 	{
 		print->arg[i] = print->c;
@@ -28,13 +34,19 @@ void	ft_left_justify_char(t_print *print, int width, char letter)
 
 void	ft_right_justify_char(t_print *print, int width, char letter)
 {
-	print->arg[width--] = '\0';
-	print->arg[width--] = letter;
-	while (width >= 0)
+	int i;
+
+	i = 0;
+	while (i < width - 1)
 	{
-		print->arg[width] = print->c;
-		width--;
+		print->arg[i] = print->c;
+		i++;
 	}
+	if (letter != '\0')
+		print->arg[i++] = letter;
+	else
+		print->size = print->size + 1;
+	print->arg[i] = '\0';
 }
 
 void	ft_character(t_print *print, t_params *params, va_list ap)
