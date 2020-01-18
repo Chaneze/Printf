@@ -6,7 +6,7 @@
 /*   By: charoua <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 12:14:54 by charoua           #+#    #+#             */
-/*   Updated: 2020/01/18 15:30:45 by charoua          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:34:40 by charoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	get_arg(t_print *print, t_params *params, va_list ap)
 void	ft_display(t_print *print, t_params *params, va_list ap)
 {
 	print->arg = NULL;
+	print->neg = 0;
 	get_arg(print, params, ap);
 	if (print->arg)
 	{
@@ -77,7 +78,6 @@ int		ft_printf(const char *str, ...)
 
 	print.index = 0;
 	print.size = 0;
-	print.neg = 0;
 	print.c = ' ';
 	va_start(ap, str);
 	params = NULL;
